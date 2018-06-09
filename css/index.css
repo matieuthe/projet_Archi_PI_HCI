@@ -10,3 +10,9 @@
 body{
     background-color: rgb(230,230,230);
 }
+
+.titleChart{
+    color: white;
+    font-weight: 500;
+    font-size: 25px;
+}

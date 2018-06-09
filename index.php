@@ -7,6 +7,7 @@
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="css/index.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="./js/morris.js-0.5.1/morris.css">
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -41,6 +42,7 @@
         Consommation d'eau depuis le début de la journée
         
         En dessous : Evolution de la consommation d'eau dans les dernières 24h dans un graphiques
+<i class="material-icons">show_chart</i>
         -->
         <div class="row">
             <div class="left-align col s12 m8 offset-m2">
@@ -75,23 +77,27 @@
                 </div>
                 
                 <!-- Last 24hours graphiques -->
-                <div class="card ">
-                    <div class="card-title green lighten-1 text-white"><i class="material-icons">show_chart</i>Humididty evolution last 24 hours</div>
+                <div class="card ">                   
+                    <div class="card-content green lighten-1">
+                        <span class="titleChart">Humididty evolution last 24 hours</span>
+                    </div>
                     <div class="divider"></div>
                     <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
+                        <div id="myfirstchart" style="height: 250px;"></div>
                     </div>
                 </div>
         </div>    
-        
+        </div>
     </body>
     <script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="./js/materialize.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="./js/morris.js-0.5.1/morris.min.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems, options);
+            //var instances = M.Sidenav.init(elems, options);
         });
 
         // Or with jQuery
@@ -99,5 +105,26 @@
         $(document).ready(function(){
             $('.sidenav').sidenav();
         });  
+        
+        new Morris.Line({
+          // ID of the element in which to draw the chart.
+          element: 'myfirstchart',
+          // Chart data records -- each entry in this array corresponds to a point on
+          // the chart.
+          data: [
+            { hour: '15', value: 20 },
+            { hour: '16', value: 10 },
+            { hour: '17', value: 80 },
+            { hour: '18', value: 5 },
+            { hour: '19', value: 20 }
+          ],
+          // The name of the data record attribute that contains x-values.
+          xkey: 'hour',
+          // A list of names of data record attributes that contain y-values.
+          ykeys: ['value'],
+          // Labels for the ykeys -- will be displayed when you hover over the
+          // chart.
+          labels: ['humidity']
+        });
     </script>
 </html>
