@@ -29,15 +29,15 @@ $con->close();
             <div class="col s12 m6 l3">
                 <div class="card light-blue lighten-2">
                     <div class="card-content white-text">
-                        <h2 class="infoCardTitle"><?php echo $rows[0]['value'];?>%</h2>
+                        <h2 class="infoCardTitle" id="infoLevel">--%</h2>
                         <p>Declenchment level</p>
                     </div>
                 </div>
             </div>
             <div class="col s12 m6 l3">
                 <div class="card yellow darken-2">
-                     <div class="card-content white-text">
-                        <h2 class="infoCardTitle"><?php if($rows[1]['type'] == 1) echo "ON"; else echo "OFF";?></h2>
+                    <div class="card-content white-text">
+                        <h2 class="infoCardTitle" id="infoPower">--</h2>
                         <p>Water supply statut</p>
                     </div>
                 </div>
@@ -73,57 +73,67 @@ $con->close();
     </div>    
 </div>
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
-  </div>
+</div>
 
 
 
 <?php include_once("./headerFooter/footer.php"); ?>
 
 <script>
-    
+
     $(document).ready(function(){
         $('.modal').modal();
-    });
-    
-    $('.spanTitle').click(function(e){
-        $('.modal').modal('open');
-    });
-    
-    new Morris.Area({
-      // ID of the element in which to draw the chart.
-        element: 'myfirstchart',
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
-        data: [
-        { hour: '2012-02-20', value: 20 },
-        { hour: '2012-02-21', value: 10 },
-        { hour: '2012-02-22', value: 80 },
-        { hour: '2012-02-23', value: 5 },
-        { hour: '2012-02-24', value: 20 },
-        { hour: '2012-02-25', value: 50 }
-        ],
-        // The name of the data record attribute that contains x-values.
-        xkey: 'hour',
-        // A list of names of data record attributes that contain y-values.
-        ykeys: ['value'],
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
-        labels: ['humidity'],
-        behaveLikeLine:true,
-        lineColors: ['#64b5f6'],
+
+        $('.spanTitle').click(function(e){
+            $('.modal').modal('open');
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "./process/infoTap.php",
+            success: function(data){
+                var tabValue = $.parseJSON(data);
+                $('#infoLevel').html(tabValue['level'] + "%");
+                $('#infoPower').html(tabValue['statut']);
+            }
+        });
+
+        new Morris.Area({
+            // ID of the element in which to draw the chart.
+            element: 'myfirstchart',
+            // Chart data records -- each entry in this array corresponds to a point on
+            // the chart.
+            data: [
+                { hour: '2012-02-20', value: 20 },
+                { hour: '2012-02-21', value: 10 },
+                { hour: '2012-02-22', value: 80 },
+                { hour: '2012-02-23', value: 5 },
+                { hour: '2012-02-24', value: 20 },
+                { hour: '2012-02-25', value: 50 }
+            ],
+            // The name of the data record attribute that contains x-values.
+            xkey: 'hour',
+            // A list of names of data record attributes that contain y-values.
+            ykeys: ['value'],
+            // Labels for the ykeys -- will be displayed when you hover over the
+            // chart.
+            labels: ['humidity'],
+            behaveLikeLine:true,
+            lineColors: ['#64b5f6'],
+        });
     });
 </script>
 
 
 
-    </body>
+</body>
 </html>

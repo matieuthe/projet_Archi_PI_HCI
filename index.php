@@ -1,16 +1,4 @@
-<? 
-include_once("./headerFooter/header.php") ;
-include_once("./process/config.php");
-
-$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-
-$selectsql = "SELECT type FROM tap_event ORDER BY tid DESC LIMIT 1";
-$result = mysqli_query($con, $selectsql);
-while($r = mysqli_fetch_assoc($result)){
-    $rows[] = $r;
-}
-$con->close();
-?>
+<? include_once("./headerFooter/header.php");?>
 
 <div class="row">
     <div class="left-align col s12 m8 offset-m2">
@@ -29,7 +17,7 @@ $con->close();
             <div class="col s12 m4">
                 <div class="card yellow darken-2">
                      <div class="card-content white-text">
-                        <h2 class="infoCardTitle"><?php if($rows[0]['type'] == 1) echo "ON"; else echo "OFF";?></h2>
+                        <h2 class="infoCardTitle" id="infoPower">--</h2>
                         <p>Water supply statut</p>
                     </div>
                 </div>
@@ -63,7 +51,16 @@ $con->close();
 <?php include_once("./headerFooter/footer.php"); ?> 
     
 <script>
-    $(document).ready(function(){        
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            url: "./process/infoTap.php",
+            success: function(data){
+                var tabValue = $.parseJSON(data);
+                $('#infoPower').html(tabValue['statut']);
+            }
+        });
+        
         $.ajax({
            type: "POST",
            url: "./process/getHumidity.php",
