@@ -1,4 +1,16 @@
-<? include_once("./headerFooter/header.php") ?>
+<? 
+include_once("./headerFooter/header.php") ;
+include_once("./process/config.php");
+
+$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+
+$selectsql = "SELECT type FROM tap_event ORDER BY tid DESC LIMIT 1";
+$result = mysqli_query($con, $selectsql);
+while($r = mysqli_fetch_assoc($result)){
+    $rows[] = $r;
+}
+$con->close();
+?>
 
 <div class="row">
     <div class="left-align col s12 m8 offset-m2">
@@ -17,7 +29,7 @@
             <div class="col s12 m4">
                 <div class="card yellow darken-2">
                      <div class="card-content white-text">
-                        <h2 class="infoCardTitle">On</h2>
+                        <h2 class="infoCardTitle"><?php if($rows[0]['type'] == 1) echo "ON"; else echo "OFF";?></h2>
                         <p>Water supply statut</p>
                     </div>
                 </div>
@@ -57,7 +69,7 @@
            url: "./process/getHumidity.php",
            success: function(data){
                 var tabValue = $.parseJSON(data);
-                $('#lastHumidity').html(tabValue[tabValue.length-1]['level'] + "%");
+                $('#lastHumidity').html(tabValue[0]['level'] + "%");
                 new Morris.Area({
                     // ID of the element in which to draw the chart.
                     element: 'myfirstchart',

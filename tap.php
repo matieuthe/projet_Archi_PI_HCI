@@ -1,14 +1,35 @@
-<?php include_once("./headerFooter/header.php"); ?>
+<?php 
+include_once("./headerFooter/header.php"); 
+include_once("./process/config.php");
+
+$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+
+$selectsql = "SELECT value FROM parameters WHERE name='minHumidity'";
+$result = mysqli_query($con, $selectsql);
+$rows = array();
+while($r = mysqli_fetch_assoc($result)){
+    $rows[] = $r;
+}
+
+$selectsql = "SELECT type FROM tap_event ORDER BY tid DESC LIMIT 1";
+$result = mysqli_query($con, $selectsql);
+while($r = mysqli_fetch_assoc($result)){
+    $rows[] = $r;
+}
+
+$con->close();
+
+?>
 
 <div class="row">
     <div class="left-align col s12 m8 offset-m2">
-        <h3 class="titlePage">Water Supply <span class="spanTitle"><i class="material-icons icoSett">settings</i>change settings</span></h3>        
+        <h3 class="titlePage">Water Supply <span class="spanTitle"><i class="material-icons icoSett">settings</i>CHANGE SETTINGS</span></h3>        
         <!-- Information containers -->
         <div class="row center-align">
             <div class="col s12 m6 l3">
                 <div class="card light-blue lighten-2">
                     <div class="card-content white-text">
-                        <h2 class="infoCardTitle">60%</h2>
+                        <h2 class="infoCardTitle"><?php echo $rows[0]['value'];?>%</h2>
                         <p>Declenchment level</p>
                     </div>
                 </div>
@@ -16,7 +37,7 @@
             <div class="col s12 m6 l3">
                 <div class="card yellow darken-2">
                      <div class="card-content white-text">
-                        <h2 class="infoCardTitle">On</h2>
+                        <h2 class="infoCardTitle"><?php if($rows[1]['type'] == 1) echo "ON"; else echo "OFF";?></h2>
                         <p>Water supply statut</p>
                     </div>
                 </div>
