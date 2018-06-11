@@ -22,7 +22,7 @@
                      <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="./index.php"><i class="material-icons left">home</i>Home</a></li>
                         <li><a href="./humidity.php"><i class="material-icons left">opacity</i>Humidity</a></li>
-                        <li><a href="#"><i class="material-icons left"><img height="25px "src="./ressources/img/water_supply_ico.png"></i>Water supply</a></li>
+                        <li><a href="./tap.php"><i class="material-icons left"><img height="25px "src="./ressources/img/water_supply_ico.png"></i>Water supply</a></li>
                         <li><a href="#"><i class="material-icons left">power_settings_new</i>Logout</a></li>
                     </ul>
                 </div>
@@ -33,7 +33,6 @@
             <li><div class="divider"></div></li>
             <li><a href="./index.php"><i class="material-icons left">home</i>Home</a></li>
             <li><a href="./humidity.php"><i class="material-icons left">opacity</i>Humidity</a></li>
-            <li><a href="#"><i class="material-icons left"><img height="25px "src="./ressources/img/water_supply_ico.png"></i>Water supply</a></li>
+            <li><a href="./tap.php"><i class="material-icons left"><img height="25px "src="./ressources/img/water_supply_ico.png"></i>Water supply</a></li>
             <li><a href=".#"><i class="material-icons left">power_settings_new</i>Logout</a></li>
         </ul>
-               

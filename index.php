@@ -6,15 +6,15 @@
 
         <!-- Information containers -->
         <div class="row center-align">
-            <div class="col s4">
+            <div class="col s12 m4">
                 <div class="card green lighten-1">
                     <div class="card-content white-text">
-                        <h2 class="infoCardTitle">60%</h2>
+                        <h2 class="infoCardTitle" id="lastHumidity">--%</h2>
                         <p>Humidity level</p>
                     </div>
                 </div>
             </div>
-            <div class="col s4 ">
+            <div class="col s12 m4">
                 <div class="card yellow darken-2">
                      <div class="card-content white-text">
                         <h2 class="infoCardTitle">On</h2>
@@ -22,11 +22,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col s4 ">
+            <div class="col s12 m4">
                 <div class="card red lighten-1">
                     <div class="card-content white-text">
                         <h2 class="infoCardTitle">340L</h2>
-                        <p>Water consumption today</p>
+                        <p>Consumption today</p>
                     </div>
                 </div>
             </div>
@@ -50,35 +50,33 @@
 
 <?php include_once("./headerFooter/footer.php"); ?> 
     
-<script> 
-    new Morris.Area({
-      // ID of the element in which to draw the chart.
-        element: 'myfirstchart',
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
-        data: [
-        { hour: '2012-02-24 15:00', value: 20 },
-        { hour: '2012-02-24 16:00', value: 10 },
-        { hour: '2012-02-24 17:00', value: 80 },
-        { hour: '2012-02-24 18:00', value: 5 },
-        { hour: '2012-02-24 19:00', value: 20 },
-        { hour: '2012-02-24 20:00', value: 20 },
-        { hour: '2012-02-24 21:00', value: 30 },
-        { hour: '2012-02-24 22:00', value: 40 },
-        { hour: '2012-02-24 23:00', value: 70 },
-        { hour: '2012-02-25 00:00', value: 30 },
-        { hour: '2012-02-25 01:00', value: 50 }
-        ],
-        // The name of the data record attribute that contains x-values.
-        xkey: 'hour',
-        // A list of names of data record attributes that contain y-values.
-        ykeys: ['value'],
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
-        labels: ['humidity'],
-        behaveLikeLine:true,
-        lineColors: ['#64b5f6'],
-    });
+<script>
+    $(document).ready(function(){        
+        $.ajax({
+           type: "POST",
+           url: "./process/getHumidity.php",
+           success: function(data){
+                var tabValue = $.parseJSON(data);
+                $('#lastHumidity').html(tabValue[tabValue.length-1]['level'] + "%");
+                new Morris.Area({
+                    // ID of the element in which to draw the chart.
+                    element: 'myfirstchart',
+                    // Chart data records -- each entry in this array corresponds to a point on
+                    // the chart.
+                    data: tabValue,
+                    // The name of the data record attribute that contains x-values.
+                    xkey: 'recordTime',
+                    // A list of names of data record attributes that contain y-values.
+                    ykeys: ['level'],
+                    // Labels for the ykeys -- will be displayed when you hover over the
+                    // chart.
+                    labels: ['recordTime'],
+                    behaveLikeLine:true,
+                    lineColors: ['#64b5f6'],
+                });
+           }
+        });
+    }); 
 </script>
 
     </body>

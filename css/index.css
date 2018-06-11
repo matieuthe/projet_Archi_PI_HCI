@@ -16,3 +16,27 @@ body{
     font-weight: 500;
     font-size: 25px;
 }
+
+.spanTitle{
+    color: #fbc02d;
+    font-size: 15px;
+    font-style: italic;
+    cursor: pointer;
+}
+
+.spanTitle:hover{
+    font-style: normal;
+    opacity: 0.5;
+}
+
+.icoSett{
+    font-size: 15px;
+}
+
+.icoDatePicker{
+    cursor: pointer;
+}
+
+#icoDatePicker:hover{
+    opacity: 0.5;
+}
