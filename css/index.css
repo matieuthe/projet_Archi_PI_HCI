@@ -21,6 +21,7 @@ body{
     color: #fbc02d;
     font-size: 15px;
     font-style: italic;
+    font-weight: bold;
     cursor: pointer;
     padding-left: 10px;
 }

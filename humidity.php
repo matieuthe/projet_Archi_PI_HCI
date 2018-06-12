@@ -35,19 +35,20 @@
 </div>
 
 <form action="#" method="get" id="formDate">
-    <input type='text' class='datepicker' id="datePicker" name='date' placeholder='Click to change date' onchange="closeDatePicker()" hidden>
+    <input type='text' class='datepicker' id="datePicker" name='date' value="" onchange="closeDatePicker()" hidden>
 </form>
 
 
 <?php include_once("./headerFooter/footer.php"); ?>
 
-<script> 
+<script>
+    var bar;
     function closeDatePicker(){
         $('#myfirstchart').empty();
-        printGraph($('#datePicker').val());
+        printGraph();
     } 
 
-    function printGraph(dateSelect){
+    function printGraph(){
         $.ajax({
             type: "GET",
             url: "./process/getHumidity.php",
@@ -55,7 +56,7 @@
             success: function(data){
                 var tabValue = $.parseJSON(data);
                 if(tabValue[0] != undefined){
-                    new Morris.Area({
+                    bar = new Morris.Area({
                         // ID of the element in which to draw the chart.
                         element: 'myfirstchart',
                         // Chart data records -- each entry in this array corresponds to a point on
@@ -87,8 +88,8 @@
                     $('#myfirstchart').html("<h4 class='center-align'>No record available this day</h4>");
                     document.getElementById("bodyTableau").innerHTML = "<tr><td>--</td><td>--</td><td>--</td></tr>" 
                 }
-                    if(dateSelect != null){
-                        document.getElementById("titleHumidity").innerHTML = "Humidity evolution on " + dateSelect;
+                    if($('#datePicker').val() == " "){
+                        document.getElementById("titleHumidity").innerHTML = "Humidity evolution on " + $('#datePicker').val();
                         $('#datePicker').val("");
                     } 
             }
@@ -124,6 +125,7 @@
         });
 
         printGraph();
+        window.onresize = closeDatePicker;
     });
 </script>
 

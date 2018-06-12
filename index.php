@@ -42,7 +42,7 @@
                 <div id="myfirstchart" style="height: 250px;"></div>
             </div>
             <div class="card-action right-align">
-                <a href="./humidity.php"><i class="material-icons right">send</i> See more</a>
+                <a href="./humidity.php"><i class="material-icons right">send</i> <span class="spanTitle">See more</span></a>
             </div>
         </div>
     </div>    
@@ -51,16 +51,7 @@
 <?php include_once("./headerFooter/footer.php"); ?> 
     
 <script>
-    $(document).ready(function(){
-        $.ajax({
-            type: "POST",
-            url: "./process/infoTap.php",
-            success: function(data){
-                var tabValue = $.parseJSON(data);
-                $('#infoPower').html(tabValue['statut']);
-            }
-        });
-        
+    function printGraph(){
         $.ajax({
            type: "POST",
            url: "./process/getHumidity.php",
@@ -85,6 +76,23 @@
                 });
            }
         });
+    }
+    
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            url: "./process/infoTap.php",
+            success: function(data){
+                var tabValue = $.parseJSON(data);
+                $('#infoPower').html(tabValue['statut']);
+            }
+        });
+        
+        printGraph();
+        window.onresize = function(){
+            $('#myfirstchart').empty();
+            printGraph();
+        }
     }); 
 </script>
 
