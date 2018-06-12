@@ -10,7 +10,7 @@
             <div class="card-content">
                 <div id="myfirstchart" style="height: 250px;"></div>
             </div>
-            <table class="centered" id="preciseValue">
+            <table class="centered highlight" id="preciseValue">
                 <thead>
                     <tr>
                         <th>Date (Year-Month-Day)</th>
@@ -96,17 +96,33 @@
     }
 
     $(document).ready(function(){
-        var picker = $('.datepicker').datepicker({
-            format:'yyyy-mm-dd',
-            minDate: new Date(2018, 06 - 1, 01),
-            maxDate: new Date(2018, 06 - 1, 26),
+        $.ajax({
+            type: "POST",
+            url: "./process/infoTap.php",
+            success: function(data){
+                var tabValue = $.parseJSON(data);
+                
+                var yearMin = tabValue['dateMin'].substring(0,4);
+                var monthMin = tabValue['dateMin'].substring(5,7);
+                var dayMin = tabValue['dateMin'].substring(8,10);
+                
+                var yearMax = tabValue['dateMax'].substring(0,4);
+                var monthMax = tabValue['dateMax'].substring(5,7);
+                var dayMax = tabValue['dateMax'].substring(8,10);
+                
+                var picker = $('.datepicker').datepicker({
+                    format:'yyyy-mm-dd',
+                    minDate: new Date(yearMin, monthMin - 1, dayMin),
+                    maxDate: new Date(yearMax, monthMax - 1, dayMax),
+                });
+                
+                var instance = M.Datepicker.getInstance($('.datepicker'));
+                $('#modifyDate').click(function(){
+                    instance.open();
+                });
+            }
         });
-        var today = new Date()
-        var instance = M.Datepicker.getInstance($('.datepicker'));
 
-        $('#modifyDate').click(function(){
-            instance.open();
-        });
         printGraph();
     });
 </script>

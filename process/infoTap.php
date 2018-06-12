@@ -19,6 +19,12 @@ while($r = mysqli_fetch_assoc($result)){
     }
 }
 
-echo "{\"level\": $level,\"statut\": \"$type\"}";
+$selectsql = "SELECT MAX(recordTime), MIN(recordTime) FROM humidity";
+$result = mysqli_query($con, $selectsql);
+while($r = mysqli_fetch_assoc($result)){
+    $dateLimits = $r;
+}
+
+echo "{\"level\": $level,\"statut\": \"$type\", \"dateMin\": \"".$dateLimits['MIN(recordTime)']."\", \"dateMax\": \"".$dateLimits['MAX(recordTime)']."\"}";
 $con->close();
 ?>
