@@ -1,4 +1,7 @@
-<? include_once("./headerFooter/header.php");?>
+<? 
+$title = "Home";
+include_once("./headerFooter/header.php");
+?>
 
 <div class="row">
     <div class="left-align col s12 m8 offset-m2">

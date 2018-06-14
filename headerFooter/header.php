@@ -11,13 +11,19 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Home Page</title>
+        <title><?php 
+            if(isset($title))
+                echo $title;
+            else
+                echo "SmartGarden";
+            ?>
+        </title>
     </head>
     <body>
         <div class="navbar-fixed">
             <nav>
                 <div id="navigation" class="nav-wrapper  green lighten-1">
-                    <a href="./index.php" class="brand-logo"><i class="material-icons">format_paint</i>Smart Garden</a>
+                    <a href="./index.php" class="brand-logo"><i class="material-icons">developer_board</i>Smart Garden</a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                      <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="./index.php"><i class="material-icons left">home</i>Home</a></li>

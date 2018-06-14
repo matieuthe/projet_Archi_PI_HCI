@@ -1,8 +1,11 @@
-<?php include_once("./headerFooter/header.php"); ?>
+<?php 
+$title = "Humidity";
+include_once("./headerFooter/header.php"); 
+?>
 
 <div class="row">
     <div class="left-align col s12 m8 offset-m2">
-        <h3 class="titlePage">Humidity Page<span class="spanTitle" id="modifyDate"><i class="material-icons icoSett">date_range</i>SEE ANOTHER DATE</span></h3></h3>
+        <h3 class="titlePage">Humidity Page<span class="spanTitle" id="modifyDate"><i class="material-icons icoSett">date_range</i>SEE ANOTHER DATE</span></h3>
         <div class="card ">                   
             <div class="card-content green lighten-1">
                 <span class="titleChart" id="titleHumidity">Humidity evolution last 24h hours</span>

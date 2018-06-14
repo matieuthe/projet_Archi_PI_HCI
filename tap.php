@@ -1,24 +1,6 @@
 <?php 
+$title = "Water Supply";
 include_once("./headerFooter/header.php"); 
-include_once("./process/config.php");
-
-$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-
-$selectsql = "SELECT value FROM parameters WHERE name='minHumidity'";
-$result = mysqli_query($con, $selectsql);
-$rows = array();
-while($r = mysqli_fetch_assoc($result)){
-    $rows[] = $r;
-}
-
-$selectsql = "SELECT type FROM tap_event ORDER BY tid DESC LIMIT 1";
-$result = mysqli_query($con, $selectsql);
-while($r = mysqli_fetch_assoc($result)){
-    $rows[] = $r;
-}
-
-$con->close();
-
 ?>
 
 <div class="row">
@@ -73,67 +55,63 @@ $con->close();
     </div>    
 </div>
 
+<!-- 
+    declenchement level
+    manual declenchement
+-->
+
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
     <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <h4>Settings</h4>
+        <form action="#">
+            <div class="row">
+                <div class="col s6 center">
+                    <p>Humidity declenchment level : <span id="tempHumidity" style="opacity:0.5;padding-left:10px">--</span></p>
+                </div>
+                <div class="col s6">
+                    <p class="range-field">
+                        <input type="range" name="rangeHumidity" min="0" max="100" id="rangeHumidity" onchange="changeTemp()">
+                    </p>
+                </div>
+            </div>            
+            <div class="row">
+                    <p>Automatic declenchment : </p>
+                    <div class="switch">
+                        <label>
+                            Off
+                            <input type="checkbox">
+                            <span class="lever"></span>
+                            On
+                        </label>
+                    </div>
+            </div>
+            
+            
+            <div class="switch">
+                <label>
+                    Off
+                    <input type="checkbox">
+                    <span class="lever"></span>
+                    On
+                </label>
+            </div>
+            <div class="switch">
+                <label>
+                    Off
+                    <input disabled type="checkbox">
+                    <span class="lever"></span>
+                    On
+                </label>
+            </div>
+        </form>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
 </div>
 
-
-
 <?php include_once("./headerFooter/footer.php"); ?>
-
-<script>
-
-    $(document).ready(function(){
-        $('.modal').modal();
-
-        $('.spanTitle').click(function(e){
-            $('.modal').modal('open');
-        });
-
-        $.ajax({
-            type: "POST",
-            url: "./process/infoTap.php",
-            success: function(data){
-                var tabValue = $.parseJSON(data);
-                $('#infoLevel').html(tabValue['level'] + "%");
-                $('#infoPower').html(tabValue['statut']);
-            }
-        });
-
-        new Morris.Area({
-            // ID of the element in which to draw the chart.
-            element: 'myfirstchart',
-            // Chart data records -- each entry in this array corresponds to a point on
-            // the chart.
-            data: [
-                { hour: '2012-02-20', value: 20 },
-                { hour: '2012-02-21', value: 10 },
-                { hour: '2012-02-22', value: 80 },
-                { hour: '2012-02-23', value: 5 },
-                { hour: '2012-02-24', value: 20 },
-                { hour: '2012-02-25', value: 50 }
-            ],
-            // The name of the data record attribute that contains x-values.
-            xkey: 'hour',
-            // A list of names of data record attributes that contain y-values.
-            ykeys: ['value'],
-            // Labels for the ykeys -- will be displayed when you hover over the
-            // chart.
-            labels: ['humidity'],
-            behaveLikeLine:true,
-            lineColors: ['#64b5f6'],
-        });
-    });
-</script>
-
-
-
+<script src="./js/tap.js"></script>
 </body>
 </html>
