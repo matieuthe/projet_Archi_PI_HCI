@@ -53,7 +53,7 @@ foreach($record as $temp){
                 $consoJournal[$compteurDay] += $diff * $debit;
             }
         }else{//If the record start by a closing event
-            $startday = $dateClose->format('Y-m-d');
+            $startDay = new DateTime($dateClose->format('Y-m-d'));
             $diffStart = abs($startDay->getTimestamp() - $dateClose->getTimestamp())/60;
             $consoJournal[$compteurDay] += $diffStart * $debit;
         }
