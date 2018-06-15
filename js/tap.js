@@ -9,6 +9,17 @@ $(document).ready(function(){
         $('.modal').modal('open');
     });
 
+    $('#submitFormUpdate').on('click', function(){
+        $.ajax({
+            type: "POST",
+            data: $("#formParamTap").serialize(),
+            url: "./process/updateParam.php",
+            success: function(data){
+                window.location.replace("./tap.php");
+            }
+        });
+    });
+
     $.ajax({
         type: "POST",
         url: "./process/infoTap.php",

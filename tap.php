@@ -64,7 +64,7 @@ include_once("./headerFooter/header.php");
 <div id="modal1" class="modal">
     <div class="modal-content">
         <h4>Settings</h4>
-        <form action="#">
+        <form action="#" id="formParamTap">
             <div class="row">
                 <div class="col s6 center">
                     <p>Humidity declenchment level : <span id="tempHumidity" style="opacity:0.5;padding-left:10px">--</span></p>
@@ -75,39 +75,11 @@ include_once("./headerFooter/header.php");
                     </p>
                 </div>
             </div>            
-            <div class="row">
-                    <p>Automatic declenchment : </p>
-                    <div class="switch">
-                        <label>
-                            Off
-                            <input type="checkbox">
-                            <span class="lever"></span>
-                            On
-                        </label>
-                    </div>
-            </div>
-            
-            
-            <div class="switch">
-                <label>
-                    Off
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    On
-                </label>
-            </div>
-            <div class="switch">
-                <label>
-                    Off
-                    <input disabled type="checkbox">
-                    <span class="lever"></span>
-                    On
-                </label>
-            </div>
         </form>
     </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    <div class="modal-footer">        
+        <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a href="#" class="modal-close waves-effect waves-green btn-flat" id="submitFormUpdate">Update</a>
     </div>
 </div>
 
