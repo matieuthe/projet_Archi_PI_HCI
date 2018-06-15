@@ -14,20 +14,23 @@ $result = mysqli_query($con, $selectsql);
 while($r = mysqli_fetch_assoc($result)){
     $record[] = $r; //Event occuring in a month
 }
+$con->close();
 
 $consoJournal = array();
 $consoJournal[0] = 0;
-
+$listDays = array();
 $compteurDay=0;
-$consoMonth = 0;
 
 foreach($record as $temp){
+    if(count($listDays) == 0)
+        $listDays[] = (new DateTime($temp['recordTime']))->format('Y-m-d');
     //Event of opening the tap
     if($temp['type'] == 1){
         $dateTemp = new DateTime($temp['recordTime']);
         if(isset($dateClose)){
             if($dateClose->format('Y-m-d') != $dateTemp->format('Y-m-d')){
                 $consoJournal[++$compteurDay] = 0;
+                $listDays[] = $dateTemp->format('Y-m-d');
             }
         }
     }
@@ -36,6 +39,7 @@ foreach($record as $temp){
         $dateClose = new DateTime($temp['recordTime']);
         if(isset($dateTemp)){
             if($dateClose->format('Y-m-d') != $dateTemp->format('Y-m-d')){
+                $listDays[] = $dateClose->format('Y-m-d');
                 //Total time between the two events
                 $diffTotal = abs($dateTemp->getTimestamp() - $dateClose->getTimestamp())/60;
                 $startDay = new DateTime($dateClose->format('Y-m-d'));
@@ -56,9 +60,13 @@ foreach($record as $temp){
     }
 }
 
-echo "$compteurDay<br><br>";
+$compteur = 0;
+//Creation of a JSON table with the result
+$str = "{";
+$consoMonth = 0;
 foreach($consoJournal as $temp){
-    echo $temp."<br>";
+    $str .= "\"".$listDays[$compteur++]."\": $temp,";
+    $consoMonth += $temp;
 }
-$con->close();
+echo $str."\"consoMonth\": $consoMonth}";
 ?>
