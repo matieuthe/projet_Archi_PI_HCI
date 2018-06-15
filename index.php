@@ -4,7 +4,7 @@ include_once("./headerFooter/header.php");
 ?>
 
 <div class="row">
-    <div class="left-align col s12 m8 offset-m2">
+    <div class="left-align col s12 m12 l8 offset-l2">
         <h3 class="titlePage">Home Page</h3>
 
         <!-- Information containers -->

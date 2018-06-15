@@ -62,11 +62,12 @@ foreach($record as $temp){
 
 $compteur = 0;
 //Creation of a JSON table with the result
-$str = "{";
+$str = "[";
 $consoMonth = 0;
-foreach($consoJournal as $temp){
-    $str .= "\"".$listDays[$compteur++]."\": $temp,";
-    $consoMonth += $temp;
-}
-echo $str."\"consoMonth\": $consoMonth}";
+foreach($consoJournal as $temp)
+    $str .= "{\"recordTime\":\"".$listDays[$compteur++]."\", \"value\": $temp},";
+if($str != "[")
+    echo substr($str,0,-1)."]";
+else
+    echo "[]";
 ?>

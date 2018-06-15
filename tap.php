@@ -4,11 +4,11 @@ include_once("./headerFooter/header.php");
 ?>
 
 <div class="row">
-    <div class="left-align col s12 m8 offset-m2">
+    <div class="left-align col s12 m12 l8 offset-l2">
         <h3 class="titlePage">Water Supply <span class="spanTitle"><i class="material-icons icoSett">settings</i>CHANGE SETTINGS</span></h3>        
         <!-- Information containers -->
         <div class="row center-align">
-            <div class="col s12 m6 l3">
+        <div class="col s6 m6 l3">
                 <div class="card light-blue lighten-2">
                     <div class="card-content white-text">
                         <h2 class="infoCardTitle" id="infoLevel">--%</h2>
@@ -16,7 +16,7 @@ include_once("./headerFooter/header.php");
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6 l3">
+            <div class="col s6 m6 l3">
                 <div class="card yellow darken-2">
                     <div class="card-content white-text">
                         <h2 class="infoCardTitle" id="infoPower">--</h2>
@@ -24,18 +24,18 @@ include_once("./headerFooter/header.php");
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6 l3">
+            <div class="col s6 m6 l3">
                 <div class="card red lighten-1">
                     <div class="card-content white-text">
-                        <h2 class="infoCardTitle">340L</h2>
+                        <h2 class="infoCardTitle" id="dayConsumption">--L</h2>
                         <p>Consumption today</p>
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6 l3">
+            <div class="col s6 m6 l3">
                 <div class="card green lighten-1">
                     <div class="card-content white-text">
-                        <h2 class="infoCardTitle">50M²</h2>
+                        <h2 class="infoCardTitle" id="monthConsumption">--M³</h2>
                         <p>Monthly consumption</p>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ include_once("./headerFooter/header.php");
             <div class="card-content">
                 <div id="myfirstchart" style="height: 250px;"></div>
             </div>
-        </div>
+        </div><
     </div>    
 </div>
 
