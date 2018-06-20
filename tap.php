@@ -12,7 +12,7 @@ include_once("./headerFooter/header.php");
                 <div class="card light-blue lighten-2">
                     <div class="card-content white-text">
                         <h2 class="infoCardTitle" id="infoLevel">--%</h2>
-                        <p>Declenchment level</p>
+                        <p>Minimum humidity</p>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@ include_once("./headerFooter/header.php");
             <div class="card-content">
                 <div id="myfirstchart" style="height: 250px;"></div>
             </div>
-        </div><
+        </div>
     </div>    
 </div>
 
@@ -67,7 +67,7 @@ include_once("./headerFooter/header.php");
         <form action="#" id="formParamTap">
             <div class="row">
                 <div class="col s6 center">
-                    <p>Humidity declenchment level : <span id="tempHumidity" style="opacity:0.5;padding-left:10px">--</span></p>
+                    <p>Minimum humidity level : <span id="tempHumidity" style="opacity:0.5;padding-left:10px">--</span></p>
                 </div>
                 <div class="col s6">
                     <p class="range-field">

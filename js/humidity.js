@@ -43,10 +43,10 @@ function printGraph(){
                 $('#myfirstchart').html("<h4 class='center-align'>No record available this day</h4>");
                 document.getElementById("bodyTableau").innerHTML = "<tr><td>--</td><td>--</td><td>--</td></tr>" 
             }
-                if($('#datePicker').val() == " "){
+                if($('#datePicker').val() != ""){
                     document.getElementById("titleHumidity").innerHTML = "Humidity evolution on " + $('#datePicker').val();
                     $('#datePicker').val("");
-                } 
+                }
         }
     });
 }
