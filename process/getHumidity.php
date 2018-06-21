@@ -5,9 +5,9 @@ $selectsql = "";
 
 if(isset($_GET['date']) && $_GET['date'] != ""){
     $dateEnter = mysqli_real_escape_string($con, $_GET['date']);
-    $selectsql = "SELECT * FROM humidity WHERE DATE(recordTime)='$dateEnter' ORDER BY rid DESC LIMIT 24";
+    $selectsql = "SELECT * FROM humidity WHERE DATE(recordTime)='$dateEnter' ORDER BY rid DESC";
 }else{
-    $selectsql = "SELECT * FROM humidity ORDER BY rid DESC LIMIT 24";
+    $selectsql = "SELECT * FROM humidity ORDER BY rid DESC LIMIT 30";
 }
 
 $result = mysqli_query($con, $selectsql);

@@ -38,7 +38,7 @@ include_once("./headerFooter/header.php");
         <!-- Last 24hours graphiques -->
         <div class="card ">                   
             <div class="card-content green lighten-1">
-                <span class="titleChart">Humididty evolution last 24 hours</span>
+                <span class="titleChart">Humididty evolution (last 30 records)</span>
             </div>
             <div class="divider"></div>
             <div class="card-content">
@@ -48,6 +48,21 @@ include_once("./headerFooter/header.php");
                 <a href="./humidity.php"><i class="material-icons right">send</i> <span class="spanTitle">See more</span></a>
             </div>
         </div>
+
+        <!-- Last 24hours graphiques -->
+        <div class="card ">                   
+            <div class="card-content green lighten-1">
+                <span class="titleChart">Consumption evolution (last 30 days)</span>
+            </div>
+            <div class="divider"></div>
+            <div class="card-content">
+                <div id="chartWater" style="height: 250px;"></div>
+            </div>
+            <div class="card-action right-align">
+                <a href="./tap.php"><i class="material-icons right">send</i> <span class="spanTitle">See more</span></a>
+            </div>
+        </div>
+
     </div>    
 </div>
 

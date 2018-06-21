@@ -8,7 +8,7 @@ include_once("./headerFooter/header.php");
         <h3 class="titlePage">Humidity Page<span class="spanTitle" id="modifyDate"><i class="material-icons icoSett">date_range</i>SEE ANOTHER DATE</span></h3>
         <div class="card ">                   
             <div class="card-content green lighten-1">
-                <span class="titleChart" id="titleHumidity">Humidity evolution last 24h hours</span>
+                <span class="titleChart" id="titleHumidity">Humidity evolution (last 30 records)</span>
             </div>
             <div class="card-content">
                 <div id="myfirstchart" style="height: 250px;"></div>

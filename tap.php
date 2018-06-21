@@ -51,6 +51,22 @@ include_once("./headerFooter/header.php");
             <div class="card-content">
                 <div id="myfirstchart" style="height: 250px;"></div>
             </div>
+            <table class="centered highlight" id="preciseValue">
+                <thead>
+                    <tr>
+                        <th>Date (Year-Month-Day)</th>
+                        <th>Consumption in Litter</th>
+                    </tr>
+                </thead>
+
+                <tbody id="bodyTableau">
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <!-- The result will be print -->
+                </tbody>
+            </table>
         </div>
     </div>    
 </div>
