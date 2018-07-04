@@ -46,6 +46,8 @@ include_once("./headerFooter/header.php");
         <div class="card ">                   
             <div class="card-content green lighten-1">
                 <span class="titleChart">Consumption water evolution last 30 days</span>
+                <!--<span class="spanModify" id="modifyDate"><i class="material-icons icoSett">date_range</i>SEE FROM ANOTHER DATE</span>
+                -->
             </div>
             <div class="divider"></div>
             <div class="card-content">

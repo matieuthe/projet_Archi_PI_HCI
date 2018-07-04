@@ -42,3 +42,17 @@ body{
 #icoDatePicker:hover{
     opacity: 0.5;
 }
+
+.spanModify{
+    color: #c62828;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.spanModify:hover{
+    font-style: normal;
+    opacity: 0.5;
+}

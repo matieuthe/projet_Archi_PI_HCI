@@ -5,10 +5,11 @@ include_once("./headerFooter/header.php");
 
 <div class="row">
     <div class="left-align col s12 m12 l8 offset-l2">
-        <h3 class="titlePage">Humidity Page<span class="spanTitle" id="modifyDate"><i class="material-icons icoSett">date_range</i>SEE ANOTHER DATE</span></h3>
+        <h3 class="titlePage">Humidity Page<!--<<span class="spanTitle" id="modifyDate"><i class="material-icons icoSett">date_range</i>SEE ANOTHER DATE</span>--></h3>
         <div class="card ">                   
             <div class="card-content green lighten-1">
                 <span class="titleChart" id="titleHumidity">Humidity evolution (last 30 records)</span>
+                <span class="spanModify" id="modifyDate"><i class="material-icons icoSett">date_range</i>SEE ANOTHER DATE</span>
             </div>
             <div class="card-content">
                 <div id="myfirstchart" style="height: 250px;"></div>
