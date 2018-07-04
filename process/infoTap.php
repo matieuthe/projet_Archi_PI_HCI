@@ -44,11 +44,11 @@ foreach($valueEvent as $temp){
         $dateClose = new DateTime($temp['recordTime']);
         if(isset($dateTemp)){
             $diff = abs($dateTemp->getTimestamp() - $dateClose->getTimestamp())/60;
-            $consoDay += $diff * $debit;
+            $consoDay += round($diff * $debit,2);
         }else{//If the record start by a closing event
             $startDay = new DateTime($dateClose->format('Y-m-d'));
             $diffStart = abs($startDay->getTimestamp() - $dateClose->getTimestamp())/60;
-            $consoDay += $diffStart * $debit;
+            $consoDay += round($diffStart * $debit,2);
         }
     }
 }

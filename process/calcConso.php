@@ -41,21 +41,21 @@ foreach($record as $temp){
             if($dateClose->format('Y-m-d') != $dateTemp->format('Y-m-d')){
                 $listDays[] = $dateClose->format('Y-m-d');
                 //Total time between the two events
-                $diffTotal = abs($dateTemp->getTimestamp() - $dateClose->getTimestamp())/60;
+                $diffTotal = abs($dateTemp->getTimestamp() - $dateClose->getTimestamp());
                 $startDay = new DateTime($dateClose->format('Y-m-d'));
-                $diffStart = abs($startDay->getTimestamp() - $dateClose->getTimestamp())/60;
+                $diffStart = abs($startDay->getTimestamp() - $dateClose->getTimestamp());
                 //Add conso to day before
-                $consoJournal[$compteurDay] += ($diffTotal - $diffStart) * $debit;
+                $consoJournal[$compteurDay] += (($diffTotal - $diffStart) * $debit)/60;
                 //Add the rest to the day after
-                $consoJournal[++$compteurDay] = $diffStart * $debit;
+                $consoJournal[++$compteurDay] = round(($diffStart * $debit)/60,2);
             }else{
-                $diff = abs($dateTemp->getTimestamp() - $dateClose->getTimestamp())/60;
-                $consoJournal[$compteurDay] += $diff * $debit;
+                $diff = abs($dateTemp->getTimestamp() - $dateClose->getTimestamp());
+                $consoJournal[$compteurDay] += round(($diff * $debit)/60);
             }
         }else{//If the record start by a closing event
             $startDay = new DateTime($dateClose->format('Y-m-d'));
-            $diffStart = abs($startDay->getTimestamp() - $dateClose->getTimestamp())/60;
-            $consoJournal[$compteurDay] += $diffStart * $debit;
+            $diffStart = abs($startDay->getTimestamp() - $dateClose->getTimestamp());
+            $consoJournal[$compteurDay] += round(($diffStart * $debit)/60,2);
         }
     }
 }
