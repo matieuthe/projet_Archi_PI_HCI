@@ -52,7 +52,7 @@ include_once("./headerFooter/header.php");
         <!-- Last 24hours graphiques -->
         <div class="card ">                   
             <div class="card-content green lighten-1">
-                <span class="titleChart">Consumption evolution (last 30 days)</span>
+                <span class="titleChart">Consumption evolution this month</span>
             </div>
             <div class="divider"></div>
             <div class="card-content">

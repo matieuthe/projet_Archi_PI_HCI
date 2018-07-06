@@ -1,4 +1,12 @@
 <?php
+if(isset($_POST['month'])){
+    $monthSel = $_POST['month'];
+}else{
+    $currentTime = new DateTime();
+    $currentTime->modify('+ 5 hour');
+    $monthSel = $currentTime->format('m');
+}
+
 include_once('./config.php');
 $con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 
@@ -7,8 +15,8 @@ $result = mysqli_query($con, $selectsql);
 while($r = mysqli_fetch_assoc($result)){
     $debit = $r['value']; //debit du robinet à la minute
 }
-
-$selectsql = "SELECT * FROM tap_event WHERE MONTH(recordTime) = 06 AND YEAR(recordTime) = 2018 order by recordTime";
+//echo $monthSel;
+$selectsql = "SELECT * FROM tap_event WHERE MONTH(recordTime)=$monthSel AND YEAR(recordTime)=2018 order by recordTime";
 $record = array();
 $result = mysqli_query($con, $selectsql);
 while($r = mysqli_fetch_assoc($result)){
@@ -45,7 +53,7 @@ foreach($record as $temp){
                 $startDay = new DateTime($dateClose->format('Y-m-d'));
                 $diffStart = abs($startDay->getTimestamp() - $dateClose->getTimestamp());
                 //Add conso to day before
-                $consoJournal[$compteurDay] += (($diffTotal - $diffStart) * $debit)/60;
+                $consoJournal[$compteurDay] += round((($diffTotal - $diffStart) * $debit)/60);
                 //Add the rest to the day after
                 $consoJournal[++$compteurDay] = round(($diffStart * $debit)/60,2);
             }else{

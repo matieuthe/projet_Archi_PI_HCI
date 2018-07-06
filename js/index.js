@@ -37,22 +37,26 @@ function printChartWater(){
         url: "./process/calcConso.php",
         success: function(data){
             var valueConso = $.parseJSON(data);
-            new Morris.Area({
-                // ID of the element in which to draw the chart.
-                element: 'chartWater',
-                // Chart data records -- each entry in this array corresponds to a point on
-                // the chart.
-                data: valueConso,
-                // The name of the data record attribute that contains x-values.
-                xkey: 'recordTime',
-                // A list of names of data record attributes that contain y-values.
-                ykeys: ['value'],
-                // Labels for the ykeys -- will be displayed when you hover over the
-                // chart.
-                labels: ['humidity'],
-                behaveLikeLine:true,
-                lineColors: ['#64b5f6'],
-            });
+            if(valueConso[1] != undefined){
+                new Morris.Area({
+                    // ID of the element in which to draw the chart.
+                    element: 'chartWater',
+                    // Chart data records -- each entry in this array corresponds to a point on
+                    // the chart.
+                    data: valueConso,
+                    // The name of the data record attribute that contains x-values.
+                    xkey: 'recordTime',
+                    // A list of names of data record attributes that contain y-values.
+                    ykeys: ['value'],
+                    // Labels for the ykeys -- will be displayed when you hover over the
+                    // chart.
+                    labels: ['humidity'],
+                    behaveLikeLine:true,
+                    lineColors: ['#64b5f6'],
+                });
+            }else{
+                $('#chartWater').html("<h4 class='center-align'>No record available this month</h4>");
+            }
         }
     });
 }

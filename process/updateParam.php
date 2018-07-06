@@ -6,7 +6,10 @@ if(isset($_POST['rangeHumidity'])){
     $updateSQL = "UPDATE parameters SET value='$humi' where name='minHumidity'";
     $result = mysqli_query($con, $updateSQL);
 
-    //After update we need to check if the pump need to start or not
+    /*
+    * After update we need to check if the pump need to start or not
+    */
+
     $selectsql = "SELECT * FROM humidity ORDER BY rid DESC LIMIT 1";
     $result = mysqli_query($con, $selectsql);
     $res = 0;

@@ -39,7 +39,6 @@ function printGraph(){
                 }
 
             }else{
-
                 $('#myfirstchart').html("<h4 class='center-align'>No record available this day</h4>");
                 document.getElementById("bodyTableau").innerHTML = "<tr><td>--</td><td>--</td><td>--</td></tr>" 
             }
