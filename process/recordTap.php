@@ -1,11 +1,11 @@
 <?php
-include_once('./config.php');
-/*$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+/*include_once('./config.php');
+$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 
 $aleatType=1;
 
-$date = new DateTime("2018-06-01");
-while($date < new DateTime("2018-06-26")){
+$date = new DateTime("2018-05-01");
+while($date < new DateTime("2018-07-10 14:00:00")){
     $randTime = rand(1,4);    
     $date->modify("+ $randTime hour");
 

@@ -1,14 +1,13 @@
 <?php
-include_once('./config.php');
-/*$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+/*include_once('./config.php');
+$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 //Send the data of capteur on this page
 //YYYY-MM-DD HH:MM:SS
 
 //$humidityLevel = mysqli_real_escape_string($con, $_POST['humidity']);
 $humidityLevel = 30;//mysqli_real_escape_string($con, $_POST['humidity']);
-$date = new DateTime("2018-06-01");
-for($i = 0; $i < 600; $i++){
-    //$date->add(new DateInterval('PT1H'));
+$date = new DateTime("2018-05-01");
+while($date < new DateTime("2018-07-10 14:00:00")){
     $date->modify('+ 1 hour');
     echo $date->format('Y-m-d H:i:s')."<br>";
     $humidityLevel = rand(20, 80);
